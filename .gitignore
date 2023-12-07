@@ -1,0 +1,15 @@
+**/target
+**/*.rs.bk
+**/Cargo.lock
+**/*.cargo
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws

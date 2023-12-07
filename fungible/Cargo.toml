@@ -1,0 +1,36 @@
+[package]
+name = "fungible"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+test = []
+
+[dependencies]
+async-graphql = {workspace = true , default-features = false}
+async-trait = {workspace = true}
+bcs = { workspace = true }
+futures = {workspace = true}
+linera-sdk = {workspace = true}
+linera-views = {workspace = true}
+log = {workspace = true}
+serde = {workspace = true, features = ["derive"]}
+serde_json = {workspace = true}
+thiserror = {workspace = true}
+
+[dev-dependencies]
+linera-sdk = {workspace = true, features = ["test"]}
+webassembly-test = "0.1.0"
+
+# 单元测试模拟链上环境需要添加这个
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+linera-sdk = { workspace = true, features = ["test", "wasmer"] }
+tokio = {  version = "1.32.0", features = ["macros", "rt-multi-thread"] }
+
+[[bin]]
+name = "fungible_contract"
+path = "src/contract.rs"
+
+[[bin]]
+name = "fungible_service"
+path = "src/service.rs"
